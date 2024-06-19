@@ -20,6 +20,9 @@ class PageController extends Controller
 
     public function welcome()
     {
+        //dump e die
+        //dd($this->articles);
+        
         return view('welcome');
     }
 
