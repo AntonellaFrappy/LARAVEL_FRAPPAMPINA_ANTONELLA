@@ -50,22 +50,19 @@ class PageController extends Controller
         return view('pages.article', ['article' => $article]);
     }
 
-    public function contacts()
-{  
     
-    
-    
-        return view('pages.contacts');
-    
-    }
 
     public function aboutUs()
     {
+
+        $title="Chi siamo";
         $description = 'Descrizione della pagina Chi Siamo';
 
-        return view('pages.aboutUs', [
-            'title' => 'Chi Siamo',
+        /*return view('pages.aboutUs', [
+            'title'=>$title,
             'description' => $description,
         ]);
+        */
+        return view ('pages.aboutUs', compact ('title', 'description'));
     }
 }

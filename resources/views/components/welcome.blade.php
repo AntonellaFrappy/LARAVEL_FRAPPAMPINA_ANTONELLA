@@ -1,2 +1,3 @@
 <div>
+    Benevenuto{{$userName}}! 
 </div>
