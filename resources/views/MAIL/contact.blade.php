@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    Hai ricevuto un nuovo contatto dal sito
+    <div>Hai ricevuto un nuovo contatto dal sito</div>
 </body>
 </html>
