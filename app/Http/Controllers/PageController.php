@@ -10,12 +10,14 @@ class PageController extends Controller
 
     public function __construct()
     {
-        $this->articles = [
+       /* $this->articles = [
             1 => ['title' => 'Titolo articolo #1', 'category' => 'Viaggi', 'description' => '...', 'visible' => true],
             2 => ['title' => 'Titolo articolo #2', 'category' => 'Concorsi', 'description' => '...', 'visible' => true],
             3 => ['title' => 'Titolo articolo #3', 'category' => 'Cronaca', 'description' => '...', 'visible' => true],
             4 => ['title' => 'Titolo articolo #4', 'category' => 'Meteo', 'description' => '...', 'visible' => true],
         ];
+        */
+        
     }
 
     public function welcome()
@@ -32,22 +34,26 @@ class PageController extends Controller
 
         $titleIsVisible = false;
 
+        $articles = Article::all();
         return view('pages.articles', [
-            'titleIsVisible' => $titleIsVisible,
-            'title' => $title,
-            'articles' => $this->articles,
+            'articles' => $articles,
+            'title' => "Articoli"
         ]);
+            
+        
     }
 
     public function article($id)
-    {    
-        if(! array_key_exists($id, $this->articles)) {
+    {  
+        $article=Article::findOrFail($id_articolo); 
+        /*if(! array_key_exists($id, $this->articles)) {
             abort(404); // questa funzione restituisce una pagina di errore 404
         }
+        */
+        //$article = $this->articles[$id];
     
-        $article = $this->articles[$id];
-    
-        return view('pages.article', ['article' => $article]);
+        return view('pages.article', [
+            'article' => $article]);
     }
 
     

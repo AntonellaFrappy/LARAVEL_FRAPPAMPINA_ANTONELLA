@@ -6,7 +6,7 @@
 @endif
 <div class="container">
     <div class="row g-3 mt-5">
-        @foreach($articles as $index => $article)
+        @foreach($articles as $article)
         @if($article['visible'])
     
         
@@ -15,7 +15,7 @@
             <x-card 
             :category="$article ['category']"
             :title="$article ['title']"
-            :route="route('articles.show',$index)"
+            :route="route('articles.show',$article->id)"
       />
     
     </div>
