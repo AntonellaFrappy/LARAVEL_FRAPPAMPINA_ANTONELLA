@@ -1,4 +1,4 @@
-<x-layout :title="$article['title']">
+<x-layout :title="$article->title">
 
     <a href="{{route('articles')}}">indietro</a>
     
@@ -6,10 +6,10 @@
 
     <br><br>
 
-    <span>{{ $article['category'] }}</span>
+    <span>{{ $article->category}}</span>
 
-    <h1>{{ $article['title'] }}</h1>
-    <p>{{ $article['description'] }}</p>
+    <h1>{{ $article->title}}</h1>
+    <p>{{ $article->description }}</p>
 </x-layout>
 
 

@@ -13,8 +13,8 @@
         
         <div class="col-lg-3">
             <x-card 
-            :category="$article ['category']"
-            :title="$article ['title']"
+            :category="$article->category"
+            :title="$article->title"
             :route="route('articles.show',$article->id)"
       />
     

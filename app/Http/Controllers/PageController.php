@@ -10,21 +10,11 @@ class PageController extends Controller
 
     public function __construct()
     {
-       /* $this->articles = [
-            1 => ['title' => 'Titolo articolo #1', 'category' => 'Viaggi', 'description' => '...', 'visible' => true],
-            2 => ['title' => 'Titolo articolo #2', 'category' => 'Concorsi', 'description' => '...', 'visible' => true],
-            3 => ['title' => 'Titolo articolo #3', 'category' => 'Cronaca', 'description' => '...', 'visible' => true],
-            4 => ['title' => 'Titolo articolo #4', 'category' => 'Meteo', 'description' => '...', 'visible' => true],
-        ];
-        */
-        
+        $this->articles = \App\Models\Article::all();
     }
 
     public function welcome()
-    {
-        //dump e die
-        //dd($this->articles);
-        
+    {        
         return view('welcome');
     }
 
@@ -34,41 +24,46 @@ class PageController extends Controller
 
         $titleIsVisible = false;
 
-        $articles = Article::all();
         return view('pages.articles', [
-            'articles' => $articles,
-            'title' => "Articoli"
+            'titleIsVisible' => $titleIsVisible,
+            'title' => $title,
+            'articles' => $this->articles,
+            'message' => 'Ci sono 3 nuovi articoli! (da controller)',
         ]);
-            
+    }
+
+    public function article(\App\Models\Article $article)
+    {    
+         //$article = \App\Models\Article::find($id); //cerca, di default, sul campo id
         
-    }
+        // $article = \App\Models\Article::findOrFail($id); // se il record con $id non esiste allora 404
 
-    public function article($id)
-    {  
-        $article=Article::findOrFail($id_articolo); 
-        /*if(! array_key_exists($id, $this->articles)) {
-            abort(404); // questa funzione restituisce una pagina di errore 404
-        }
-        */
-        //$article = $this->articles[$id];
-    
-        return view('pages.article', [
-            'article' => $article]);
+        return view('pages.article', ['article' => $article]);
     }
-
-    
 
     public function aboutUs()
     {
+        $title = 'Chi Siamo';
 
-        $title="Chi siamo";
         $description = 'Descrizione della pagina Chi Siamo';
 
         /*return view('pages.aboutUs', [
-            'title'=>$title,
+            'title' => $title,
             'description' => $description,
-        ]);
+        ]);*/
+
+        return view('pages.aboutUs', compact('title', 'description'));
+
+        /*
+            compact('title', 'description') 
+
+            equivale all'array (perché la funzione compact restituisce questo array):
+
+            [
+                'title' => $title,
+                'description' => $description,
+            ]
+            
         */
-        return view ('pages.aboutUs', compact ('title', 'description'));
     }
 }
