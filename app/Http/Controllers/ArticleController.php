@@ -2,34 +2,42 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreArticleRequest;
 use Illuminate\Http\Request;
 use App\Models\Article;
 
 class ArticleController extends Controller
 {
-    public function store()
+    public function index()
     {
-        /* 1 METODO
-        $article = new Article();
+        return view('articles.index', ['articles' => Article::all()]);
+    }
 
-        $article->title = 'Sono un articolo';
-        $article->category = 'Sport';
-        $article->description = 'Nuovo database';
-        $article->body = 'Sono il contenuto';
-        $article->visible = true;
-        
+    public function create()
+    {
+        return view('articles.create');
+    }
 
-        $article->save();
-        */
-        //2 metodo
-        Article::create([
-        'title'=>'Secondo articolo',
-        'category'=>'Astronomia',
-        'description'=>'...',
+    public function store(Request $request)
 
-        ]);
-        //Article::create ($request->all());
-        
-        
+    {
+        //dd($request->all());
+        $article = Article::create($request->all());
+
+        if($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            $fileName = uniqid('img_') . '.' . $request->file('image')->extension();
+
+            // $fileName = $request->file('image')->getClientOriginalName();
+
+            $path = 'public/images/articles/' . $article->id;
+
+            $article->image = $request->file('image')->storeAs($path, $fileName);
+
+            $article->save();
+
+        }
+
+        return redirect()->back()->with(['success' => 'Articolo creato correttamente']);
     }
 }

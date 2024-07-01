@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('articles', function (Blueprint $table) {
-            $table->id();
-            $table->string('title',150);
-            $table->string('category',50);
-            $table->string('description');
+            $table->id(); // nome colonna: id, chiave primaria e auto_increment
+            $table->string('title', 150); // stringa (varchar) di massimo 150 caratteri
+            $table->string('category', 50);
+            $table->string('description'); // di default 255 caratteri
+            $table->text('body')->nullable(); // un campo testo molto lungo di cui non conosciamo lunghezza massima a priori
             $table->boolean('visible')->default(true);
-            $table->text('body')->nullable();
             $table->timestamps();
         });
     }

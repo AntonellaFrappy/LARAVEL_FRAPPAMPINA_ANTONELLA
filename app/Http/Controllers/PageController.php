@@ -6,13 +6,9 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    private $articles;
+    
 
-    public function __construct()
-    {
-        $this->articles = \App\Models\Article::all();
-    }
-
+    
     public function welcome()
     {        
         return view('welcome');
@@ -27,7 +23,7 @@ class PageController extends Controller
         return view('pages.articles', [
             'titleIsVisible' => $titleIsVisible,
             'title' => $title,
-            'articles' => $this->articles,
+            'articles' => \App\Models\Article::all(),
             'message' => 'Ci sono 3 nuovi articoli! (da controller)',
         ]);
     }
