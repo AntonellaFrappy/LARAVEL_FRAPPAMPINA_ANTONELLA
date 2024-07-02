@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row g-3 mt-5">
         @foreach($articles as $article)
-        @if($article['visible'])
+        @if($article->visible)
     
         
         
