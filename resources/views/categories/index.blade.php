@@ -1,11 +1,11 @@
-<x-layout title="Elenco Articoli">
+<x-layout title="Elenco Categorie">
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-6">
-                <h1>Elenco Articoli</h1>
+                <h1>Elenco Categorie</h1>
             </div>
             <div class="col-lg-6 text-end">
-                <a href="{{ route('articles.create') }}" class="btn btn-primary">Crea Articolo</a>
+                <a href="{{ route('categories.create') }}" class="btn btn-primary">Crea Categoria</a>
             </div>
         </div>
 
@@ -16,21 +16,20 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Titolo</th>
-                        <th>Category</th>
+                        <th>Nome</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($articles as $article)
+                    @foreach($categories as $category)
                     <tr>
-                        <td>{{ $article->id }}</td>
-                        <td>{{ $article->title }}</td>
-                        <td>{{ $article->category }}</td>
+                        <td>{{ $category->id }}</td>
+                        <td>{{ $category->name }}</td>
                         <td class="text-end">
-                            <a href="{{ route('articles.edit', $article) }}" class="btn btn-sm btn-secondary">modifica</a>
+                            <a href="{{ route('categories.edit', $category) }}" class="btn btn-sm btn-secondary">modifica</a>
 
-                            <form class="d-inline ms-1" action="{{ route('articles.destroy', $article) }}" method="POST">
+                            <form class="d-inline ms-1" action="{{ route('categories.destroy', $category) }}"
+                                    method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">cancella</button>
@@ -40,12 +39,6 @@
                     @endforeach
                 </tbody>
             </table>
-            {{-- $articles->links() --}}
         </div>
     </div>
 </x-layout>
-
-
-
-
-            

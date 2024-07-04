@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
@@ -22,9 +23,26 @@ Route::prefix('account')->middleware('auth')->group(function () {
     Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
     Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles.create');
     Route::post('/articles/store', [ArticleController::class, 'store'])->name('articles.store');
+    
+    Route::get('/articles/{article}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
+    Route::put('/articles/{article}/update', [ArticleController::class, 'update'])->name('articles.update');
+    Route::delete('/articles/{article}/delete', [ArticleController::class, 'destroy'])->name('articles.destroy');
+
+    Route::resource('categories', CategoryController::class);
 
 });
 
+
+Route::get('/test/first', function () {
+
+    // Prende il primo elemento di cui trova corrispondenza
+    // Generalmente si usa su colonne di tipo unique come email
+    // $user = App\Models\User::where('email', 'giuseppe5@example.com')->first();
+    $user = App\Models\User::where('email', 'giuseppe5@example.com')->firstOrFail();
+
+    return $user;
+
+});
 
 
 

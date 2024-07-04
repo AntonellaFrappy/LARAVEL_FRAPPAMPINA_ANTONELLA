@@ -32,6 +32,7 @@
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{{ route('articles.index') }}">Gestione Articoli</a></li>
                 <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{{ route('categories.index') }}">Gestione Categorie</a></li>
                 <li>
                   <form action="/logout" method="POST">
                     @csrf
