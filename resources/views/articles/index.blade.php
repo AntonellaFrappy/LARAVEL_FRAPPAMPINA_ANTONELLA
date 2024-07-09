@@ -26,7 +26,7 @@
                     <tr>
                         <td>{{ $article->id }}</td>
                         <td>{{ $article->title }}</td>
-                        <td>{{ $article->category }}</td>
+                        <td>{{ $article->category->name }}</td>
                         <td class="text-end">
                             <a href="{{ route('articles.edit', $article) }}" class="btn btn-sm btn-secondary">modifica</a>
 

@@ -9,6 +9,15 @@ class Article extends Model
 {
     use HasFactory;
 
-    //con protected $fillable passiamo i campi al database per il salvataggio
-    protected $fillable = ['title', 'category', 'description', 'body', 'visible'];
+    protected $fillable = ['title', 'user_id', 'category_id', 'description', 'body', 'visible'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

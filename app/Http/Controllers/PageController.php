@@ -29,8 +29,10 @@ class PageController extends Controller
     }
 
     public function article(\App\Models\Article $article)
+        
     {    
-         //$article = \App\Models\Article::find($id); //cerca, di default, sul campo id
+         
+        //$article = \App\Models\Article::find($id); //cerca, di default, sul campo id
         
         // $article = \App\Models\Article::findOrFail($id); // se il record con $id non esiste allora 404
 

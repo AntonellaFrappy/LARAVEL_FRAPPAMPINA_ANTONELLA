@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id(); // nome colonna: id, chiave primaria e auto_increment
+            $table->unsignedBigInteger('user_id');
             $table->string('title', 150); // stringa (varchar) di massimo 150 caratteri
-            $table->string('category', 50);
+            $table->unsignedBigInteger('category_id');
             $table->string('description'); // di default 255 caratteri
             $table->text('body')->nullable(); // un campo testo molto lungo di cui non conosciamo lunghezza massima a priori
             $table->boolean('visible')->default(true);

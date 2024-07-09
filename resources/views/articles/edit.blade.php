@@ -2,26 +2,29 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-6 mx-auto">
+                <a href="{{ route('articles.index') }}" class="btn">indietro</a>
                 <h1>Modifica un Articolo</h1>
 
                 <x-success />
 
-                
                 <div class="mt-5">
                     <form action="{{ route('articles.update', $article) }}" method="POST" enctype="multipart/form-data">
-                        @csrf 
-                        @method('PUT')
+                        @csrf      
+                        @method('PUT')              
                         <div class="row g-3">
                             <div class="col-12">
                                 <label for="title">Titolo <b class="text-danger">*</b></label>
                                 <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror"
-                                        maxlength="150" value="{{ old('title',$article->title) }}">
+                                        maxlength="150" value="{{ old('title', $article->title) }}">
                                 @error('title') <span class="text-danger small">{{ $message }}</span> @enderror
                             </div>
                             <div class="col-12">
                                 <label for="category">Categoria *</label>
-                                <input type="text" name="category" id="title" class="form-control @error('category') is-invalid @enderror"
-                                        maxlength="50" value="{{ old('category', $article->category) }}">
+                                <select name="category" id="category" class="form-control">
+                                    @foreach($categories as $category)
+                                    <option value="{{ $category->name }}" @selected($article->category === $category->name)>{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
                                 @error('category') <span class="text-danger small">{{ $message }}</span> @enderror
                             </div>
                             <div class="col-12">
