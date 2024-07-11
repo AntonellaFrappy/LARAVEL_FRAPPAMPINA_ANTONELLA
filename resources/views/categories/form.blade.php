@@ -1,16 +1,18 @@
-<x-layout title="Modifica una categoria">
+<x-layout title="{{ $title }}">
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-6 mx-auto">
                 <a href="{{ route('categories.index') }}" class="btn">indietro</a>
-                <h1>Modifica una Categoria</h1>
+                <h1>{{ $title }}</h1>
 
                 <x-success />
 
                 <div class="mt-5">
-                    <form action="{{ route('categories.update', $category) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
                         @csrf   
-                        @method('PUT')                 
+                        @if($category->id)
+                            @method('PUT')  
+                        @endif
                         <div class="row g-3">
                             <div class="col-12">
                                 <label for="name">Nome <b class="text-danger">*</b></label>
@@ -22,7 +24,7 @@
                                 <p class="small">i campi contrassegnati da * sono obbligatori</p>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary" type="submit">Modifica Categoria</button>
+                                <button class="btn btn-primary" type="submit">{{ $button }}</button>
                             </div>
                         </div>
                     </form>

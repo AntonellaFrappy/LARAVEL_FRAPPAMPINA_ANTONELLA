@@ -20,10 +20,15 @@ class CategoryController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        return view('categories.create');
-    }
 
+        {
+            return view('categories.form', [
+                'title' => 'Crea Categoria',
+                'action' => route('categories.store'),
+                'button' => 'Crea Categoria',
+                'category' => new Category(),
+            ]);
+        }
     /**
      * Store a newly created resource in storage.
      */
@@ -47,7 +52,12 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.edit', ['category' => $category]);
+        return view('categories.form', [
+            'category' => $category,
+            'title' => 'Modifica Categoria',
+            'action' => route('categories.update', $category),
+            'button' => 'Modifica Categoria',
+        ]);
     }
 
     /**
@@ -65,6 +75,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        if($category->articles->count()) {
+            return redirect()->back()->with(['error' => 'Impossibile cancellare...']);
+        }
+
         $category->delete();
 
         return redirect()->back()->with(['success' => 'Categoria cancellata correttamente']);

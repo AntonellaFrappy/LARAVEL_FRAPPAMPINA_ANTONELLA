@@ -10,6 +10,7 @@
         </div>
 
         <x-success />
+        <x-error />
 
         <div class="mt-5">
             <table class="table table-bordered">
@@ -17,6 +18,7 @@
                     <tr>
                         <th>#</th>
                         <th>Nome</th>
+                        <th>Articoli</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -25,6 +27,13 @@
                     <tr>
                         <td>{{ $category->id }}</td>
                         <td>{{ $category->name }}</td>
+                        <td>
+                            <ul>
+                                @foreach($category->articles as $article)
+                                    <li>{{ $article->title }}</li>
+                                @endforeach
+                            </ul>
+                        </td>
                         <td class="text-end">
                             <a href="{{ route('categories.edit', $category) }}" class="btn btn-sm btn-secondary">modifica</a>
 
