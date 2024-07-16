@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AnimeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
@@ -14,7 +15,8 @@ Route::get('/articoli', [PageController::class, 'articles'])->name('articles');
 Route::get('/articoli/{article}', [PageController::class, 'article'])->name('articles.show');
 
 Route::get('/chisiamo', [PageController::class, 'aboutUs'])->name('aboutUs');
-
+Route::get('/anime/generi',[AnimeController::class,'genres'])->name('anime.genres');
+Route::get('/anime/{genre_id}',[AnimeController::class,'animeByGenre'])->name('anime.bygenres');
 
 Route::prefix('account')->middleware('auth')->group(function () {
 
