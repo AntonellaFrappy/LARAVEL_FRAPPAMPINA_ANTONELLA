@@ -16,7 +16,7 @@
             @if($article->visible)
             <div class="col-lg-3">
                 <x-card
-                    :category="$article->category->name"
+                   :categories="$article->categories"
                     :title="$article->title"
                     :route="route('articles.show', $article->id)"
                     />

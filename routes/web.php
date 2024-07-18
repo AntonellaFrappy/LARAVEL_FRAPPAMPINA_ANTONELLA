@@ -33,7 +33,9 @@ Route::prefix('account')->middleware('auth')->group(function () {
     Route::resource('categories', CategoryController::class);
 
 });
-
+//livewire
+Route::get('/counter',App\Livewire\Counter::class);
+Route::get('/elenco-utenti',[AccountController::class, 'searchUsers'])->name('search-users');
 
 Route::get('/test/first', function () {
 
