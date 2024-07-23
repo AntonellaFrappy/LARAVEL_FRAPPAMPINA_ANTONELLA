@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AnimeController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
@@ -36,7 +37,7 @@ Route::prefix('account')->middleware('auth')->group(function () {
 //livewire
 Route::get('/counter',App\Livewire\Counter::class);
 Route::get('/elenco-utenti',[AccountController::class, 'searchUsers'])->name('search-users');
-
+Route::get('/admin/gestione-utenti',[AdminController::class, 'users'])->name('admin.users');
 Route::get('/test/first', function () {
 
     // Prende il primo elemento di cui trova corrispondenza
